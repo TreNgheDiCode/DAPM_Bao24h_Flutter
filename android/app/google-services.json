@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "321428581589",
+    "firebase_url": "https://doancnpm-33225-default-rtdb.firebaseio.com",
+    "project_id": "doancnpm-33225",
+    "storage_bucket": "doancnpm-33225.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:321428581589:android:da19f0c21c5ad3355d465c",
+        "android_client_info": {
+          "package_name": "com.example.bao24h"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "321428581589-mhpno665soptipvpim2c947jcf6m0blf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4V9gP5MBSi9UVslblvKOqK1x4z0RiO4E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "321428581589-mhpno665soptipvpim2c947jcf6m0blf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:321428581589:android:41dd120c5495c6435d465c",
+        "android_client_info": {
+          "package_name": "edu.abcd.doancnpm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "321428581589-mhpno665soptipvpim2c947jcf6m0blf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4V9gP5MBSi9UVslblvKOqK1x4z0RiO4E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "321428581589-mhpno665soptipvpim2c947jcf6m0blf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
