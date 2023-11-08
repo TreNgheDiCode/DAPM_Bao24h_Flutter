@@ -41,13 +41,13 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
         title: const Text("Quên mật khẩu"),
         backgroundColor: Colors.blue,
       ),
-      body: WillPopScope(
-        onWillPop: () async {
+      body: PopScope(
+        canPop: false,
+        onPopInvoked: (bool didPop) async {
           Navigator.of(context).pushNamedAndRemoveUntil(
             startRoute,
             (route) => false,
           );
-          return false;
         },
         child: Padding(
           padding: const EdgeInsets.all(16.0),

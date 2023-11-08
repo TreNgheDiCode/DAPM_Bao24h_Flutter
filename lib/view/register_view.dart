@@ -38,13 +38,13 @@ class _RegisterViewState extends State<RegisterView> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (bool didPop) async {
         Navigator.of(context).pushNamedAndRemoveUntil(
           startRoute,
           (route) => false,
         );
-        return false;
       },
       child: Scaffold(
         body: Container(

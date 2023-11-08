@@ -61,6 +61,7 @@ class _TrangChuViewState extends State<TrangChu> {
   late final FirebaseCloudStorage _newsService;
 
   String get userId => AuthService.firebase().currentUser!.id;
+  var user = AuthService.firebase().currentUser;
 
   @override
   void initState() {
@@ -112,7 +113,7 @@ class _TrangChuViewState extends State<TrangChu> {
                     items: imageSliders,
                   ),
                 ),
-                SafeArea(
+                Expanded(
                   child: StreamBuilder(
                     stream: _newsService.allNews(),
                     builder: (context, snapshot) {
@@ -122,33 +123,27 @@ class _TrangChuViewState extends State<TrangChu> {
                           if (snapshot.hasData) {
                             final allNotes =
                                 snapshot.data as Iterable<CloudNew>;
-                            return NewsListView(
-                              news: allNotes,
-                              onDeleteNote: (currentNew) async {
-                                await _newsService.deleteNote(
-                                    documentId: currentNew.documentId);
-                              },
-                              onTap: (currentNew) {
-                                Navigator.of(context).pushNamed(
-                                  createNewRoute,
-                                  arguments: currentNew,
-                                );
-                              },
+                            return Column(
+                              children: [
+                                Expanded(
+                                  child: NewsListView(
+                                    news: allNotes,
+                                    onDeleteNote: (currentNew) async {
+                                      await _newsService.deleteNote(
+                                          documentId: currentNew.documentId);
+                                    },
+                                    onTap: (currentNew) {
+                                      Navigator.of(context).pushNamed(
+                                        createNewRoute,
+                                        arguments: currentNew,
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
                             );
                           } else {
-                            return TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pushNamedAndRemoveUntil(
-                                    createNewRoute, (route) => false);
-                              },
-                              style: TextButton.styleFrom(
-                                  backgroundColor: Colors.orange,
-                                  foregroundColor: Colors.white),
-                              child: const Text(
-                                "Tạo báo mới",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            );
+                            return const Text("Không có dữ liệu");
                           }
                         default:
                           return const CircularProgressIndicator();
@@ -169,6 +164,16 @@ class _TrangChuViewState extends State<TrangChu> {
             )
           ],
         ),
+        floatingActionButton: user?.id != null
+            ? FloatingActionButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      createNewRoute, (route) => false);
+                },
+                tooltip: "Thêm báo mới",
+                child: const Icon(Icons.add),
+              )
+            : const SizedBox.shrink(),
       ),
     );
   }

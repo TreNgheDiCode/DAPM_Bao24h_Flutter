@@ -1,5 +1,5 @@
-import 'package:bao24h/constants/routes.dart';
 import 'package:bao24h/services/data/cloud_new.dart';
+import 'package:bao24h/utilities/delete_dialog.dart';
 import 'package:flutter/material.dart';
 
 typedef NewCallBack = void Function(CloudNew newNew);
@@ -17,34 +17,31 @@ class NewsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SafeArea(
-          child: ListView.builder(
-            padding: const EdgeInsets.all(8.0),
-            itemCount: 2,
-            itemBuilder: (context, index) {
-              return Container(
-                height: 50,
-                color: Colors.amber,
-                child: const Center(child: Text('Entry')),
-              );
-            },
-          ),
-        ),
-        TextButton(
-          onPressed: () {
-            Navigator.of(context)
-                .pushNamedAndRemoveUntil(createNewRoute, (route) => false);
+    return ListView.builder(
+      itemCount: news.length,
+      itemBuilder: (context, index) {
+        final currentNew = news.elementAt(index);
+        return ListTile(
+          onTap: () {
+            onTap(currentNew);
           },
-          style: TextButton.styleFrom(
-              backgroundColor: Colors.orange, foregroundColor: Colors.white),
-          child: const Text(
-            "Tạo báo mới",
-            style: TextStyle(fontWeight: FontWeight.bold),
+          title: Text(
+            currentNew.title,
+            maxLines: 2,
+            softWrap: true,
+            overflow: TextOverflow.ellipsis,
           ),
-        )
-      ],
+          trailing: IconButton(
+            onPressed: () async {
+              final shouldDelete = await showDeleteDialog(context);
+              if (shouldDelete) {
+                onDeleteNote(currentNew);
+              }
+            },
+            icon: const Icon(Icons.delete),
+          ),
+        );
+      },
     );
   }
 }
